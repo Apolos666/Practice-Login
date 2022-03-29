@@ -16,17 +16,27 @@ const Login = () => {
             .catch(err => {
                 console.log(err)
             })
-    })
+    }, [])
+
+    const compareData = () => {
+        let accountEmail = user.map(item => item.email)
+        let compareUser = accountEmail.filter(item => item == inputUser)
+        if (compareUser.length == 0) {
+            alert('Dang nhap khong thanh cong')
+        } else {
+            alert('Dang nhap thanh cong')
+        }
+
+    }
 
     return (
         <div className="login">
-            <label>Nhap Email cua ban: </label>
+            <label>Nhập Email của bạn: </label>
             <input value={inputUser} type='text' onChange={(event) => { setInputUser(event.target.value) }} />
-            <ul>
-                {
-                    user.map(user => <li key={user.id}>{user.email}</li>)
-                }
-            </ul>
+            <div className='btn-login'>
+                <button onClick={() => { compareData() }}>Đăng Nhập</button>
+            </div>
+
         </div>
     )
 }
